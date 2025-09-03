@@ -1,0 +1,46 @@
+version: "3.9"
+
+
+name: telecom-monitor
+
+services:
+  iperf:
+    image: networkstatic/iperf3:latest
+    command: ["-s"]
+    networks: [monitor_net]
+
+  collector:
+    build: ./services/collector
+    container_name: collector
+    environment:
+      - CONFIG_PATH=/app/config.yaml
+      - DB_PATH=/data/network.db
+      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}
+    volumes:
+      - dbdata:/data
+    depends_on:
+      - iperf
+    networks: [monitor_net]
+    restart: unless-stopped
+
+  dashboard:
+    build: ./services/dashboard
+    container_name: dashboard
+    environment:
+      - DB_PATH=/data/network.db
+      - FLASK_RUN_PORT=8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - dbdata:/data
+    depends_on:
+      - collector
+    networks: [monitor_net]
+    restart: unless-stopped
+
+networks:
+  monitor_net:
+    driver: bridge
+
+volumes:
+  dbdata:

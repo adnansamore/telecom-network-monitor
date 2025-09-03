@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Telecom Network Monitor</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Telecom Network Monitor</h1>
+  <canvas id="latency" height="120"></canvas>
+  <canvas id="bandwidth" height="120"></canvas>
+
+  <script>
+    async function fetchData(url) {
+      const r = await fetch(url);
+      return await r.json();
+    }
+
+    async function refresh() {
+      const pings = await fetchData('/api/pings');
+      const bw = await fetchData('/api/bandwidth');
+
+      const labels = pings.map(p => p.ts).reverse();
+
+      const latencyValues = pings.map(p => p.success ? p.latency_ms : null).reverse();
+      const failedPoints = pings.map(p => p.success ? null : 0).reverse();
+
+      latencyChart.data.labels = labels;
+      latencyChart.data.datasets = [
+        {
+          label: 'Latency (ms)',
+          data: latencyValues,
+          borderColor: 'blue',
+          backgroundColor: 'rgba(0,0,255,0.1)',
+          fill: true,
+          tension: 0.2
+        },
+        {
+          label: 'Failed Pings',
+          data: failedPoints,
+          borderColor: 'red',
+          backgroundColor: 'rgba(255,0,0,0.2)',
+          fill: true,
+          tension: 0.2
+        }
+      ];
+      latencyChart.update();
+
+      bandwidthChart.data.labels = bw.map(x => x.ts).reverse();
+      bandwidthChart.data.datasets = [{
+        label: 'Bandwidth (Mbps)',
+        data: bw.map(x => x.mbps).reverse(),
+        borderColor: 'green',
+        backgroundColor: 'rgba(0,255,0,0.1)',
+        fill: true,
+        tension: 0.2
+      }];
+      bandwidthChart.update();
+    }
+
+    const latencyChart = new Chart(document.getElementById('latency').getContext('2d'), {
+      type: 'line',
+      data: { labels: [], datasets: [] },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: true } },
+        scales: {
+          x: { display: true },
+          y: { display: true, title: { display: true, text: 'ms' } }
+        }
+      }
+    });
+
+    const bandwidthChart = new Chart(document.getElementById('bandwidth').getContext('2d'), {
+      type: 'line',
+      data: { labels: [], datasets: [] },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: true } },
+        scales: {
+          x: { display: true },
+          y: { display: true, title: { display: true, text: 'Mbps' } }
+        }
+      }
+    });
+
+    setInterval(refresh, 5000);
+    refresh();
+  </script>
+</body>
+</html>

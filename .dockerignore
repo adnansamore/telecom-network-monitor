@@ -1,0 +1,36 @@
+# Ignore git and metadata
+.git
+.gitignore
+
+# Python caches
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs & databases (we mount volumes instead)
+*.log
+*.db
+*.sqlite3
+network.db
+
+# Editor configs
+.vscode/
+.idea/
+
+# Docker-related overrides
+docker-compose.override.yml
+*.pid
+
+# Tests (don’t need inside container images)
+services/collector/tests/

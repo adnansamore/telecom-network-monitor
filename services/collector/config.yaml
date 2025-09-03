@@ -1,0 +1,19 @@
+intervals:
+  ping_seconds: 5
+  bandwidth_seconds: 60
+
+ping_targets:
+  - host: 8.8.8.8
+    name: google_dns
+  - host: 1.1.1.1
+    name: cloudflare_dns
+
+bandwidth_target:
+  host: iperf
+  port: 5201
+  duration: 5
+
+thresholds:
+  max_latency_ms: 200
+  max_loss_pct: 5
+  min_bandwidth_mbps: 50
