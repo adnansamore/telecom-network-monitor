@@ -1,4 +1,4 @@
-from utils import run_ping
+from ..utils import run_ping
 
 
 def test_run_ping_invalid():
