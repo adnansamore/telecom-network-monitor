@@ -1,4 +1,4 @@
-from ..utils import run_ping
+from services.collector.utils import run_ping
 
 
 def test_run_ping_invalid():
