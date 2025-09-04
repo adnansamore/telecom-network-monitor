@@ -1,6 +1,6 @@
 # Telecom Network Monitor
 
-[![CI](https://github.com/<adnansamore>/telecom-network-monitor/actions/workflows/ci.yml/badge.svg)](https://github.com/<adnansamore>/telecom-network-monitor/actions/workflows/ci.yml)
+[![CI](https://github.com/adnansamore/telecom-network-monitor/actions/workflows/ci.yml/badge.svg)](https://github.com/adnansamore/telecom-network-monitor/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.11-blue.svg)
 ![Docker](https://img.shields.io/badge/docker-ready-blue.svg)
 
@@ -24,33 +24,33 @@ Includes **alerts**, **CI/CD automation**, and **containerized deployment** for 
 
 ## Project Structure
 telecom-network-monitor/
-├── docker-compose.yml
-├── README.md
-├── .gitignore
-├── .dockerignore
-│
-├── services/
-│   ├── collector/                  (ping, iperf, alerts)
-│   │   ├── Dockerfile
-│   │   ├── requirements.txt
-│   │   ├── collector.py
-│   │   ├── utils.py
-│   │   ├── alerts.py
-│   │   ├── config.yaml
-│   │   └── tests/
-│   │       └── test_utils.py
-│   │
-│   └── dashboard/                   (Flask + Chart.js)
-│       ├── Dockerfile
-│       ├── requirements.txt
-│       ├── app.py
-│       └── templates/
-│           ├── index.html
-│           └── style.css
-│
-└── .github/
-    └── workflows/
-        └── ci.yml                   (GitHub Actions CI pipeline)
+    ├── docker-compose.yml
+    ├── README.md
+    ├── .gitignore
+    ├── .dockerignore
+    │
+    ├── services/
+    │   ├── collector/                  (ping, iperf, alerts)
+    │   │   ├── Dockerfile
+    │   │   ├── requirements.txt
+    │   │   ├── collector.py
+    │   │   ├── utils.py
+    │   │   ├── alerts.py
+    │   │   ├── config.yaml
+    │   │   └── tests/
+    │   │       └── test_utils.py
+    │   │
+    │   └── dashboard/                   (Flask + Chart.js)
+    │       ├── Dockerfile
+    │       ├── requirements.txt
+    │       ├── app.py
+    │       └── templates/
+    │           ├── index.html
+    │           └── style.css
+    │
+    └── .github/
+        └── workflows/
+            └── ci.yml                   (GitHub Actions CI pipeline)
 
 
 
@@ -68,17 +68,20 @@ cd telecom-network-monitor
 ```bash
 SLACK_WEBHOOK_URL=https://hooks.slack.com/services/XXX/YYY/ZZZ
 ```
-    If not set, alerts will just print in the console.
+- If not set, alerts will just print in the console.
 
 ### 3. Start the stack
 ```bash
 docker compose up -d --build
 ```
 This spins up:
-    collector -> Pings targets + runs iperf tests
-    iperf -> Local iperf3 server for bandwidth testing
-    dashboard → Web dashboard on port 8000
+
+- collector -> Pings targets + runs iperf tests
+- iperf -> Local iperf3 server for bandwidth testing
+- dashboard → Web dashboard on port 8000
+
 ![alt text](image.png)
+
 
 ### 4. Open the Dashboard
 Macos
@@ -87,11 +90,11 @@ open http://localhost:8000
 ```
 or just open the browser and copy paste link there.
 
-You’ll see:
+**You’ll see:**
 
-    Blue-filled chart for latency (successful pings).
-    Red-filled sections for failed pings.
-    Green-filled chart for bandwidth.
+- Blue-filled chart for latency (successful pings).
+- Red-filled sections for failed pings.
+- Green-filled chart for bandwidth.
 
 ![alt text](image-1.png)
 ![alt text](image-3.png)
@@ -104,7 +107,7 @@ docker compose logs -f collector
 
 ## Running Tests
 It's good to create python virtual environments instead of installing requirements globally on local machine.
-    - If you are new to virtual environments, check out this guide I wrote:
+- If you are new to virtual environments, check out this guide I wrote:
         [Understanding Python Virtual Environments](https://adnansamore.github.io/posts/python-virtual-env/)
 
 ```bash
@@ -131,11 +134,11 @@ docker compose down -v
 
 ## Tech Stack
 
-    Python 3.11 (Flask, SQLAlchemy, PyYAML, requests)
-    Docker & Docker Compose
-    SQLite (lightweight storage)
-    Chart.js (interactive charts)
-    GitHub Actions (CI pipeline)
+Python 3.11 (Flask, SQLAlchemy, PyYAML, requests)
+Docker & Docker Compose
+SQLite (lightweight storage)
+Chart.js (interactive charts)
+GitHub Actions (CI pipeline)
 
 ## Author
 
