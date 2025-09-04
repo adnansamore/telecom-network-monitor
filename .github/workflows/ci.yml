@@ -10,5 +10,7 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install -r services/collector/requirements.txt
-      - run: pytest services/collector/tests
+      - run: |
+          export PYTHONPATH=$(pwd)
+          pytest services/collector/tests
       - run: docker compose build
