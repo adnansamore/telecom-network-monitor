@@ -23,34 +23,34 @@ Includes **alerts**, **CI/CD automation**, and **containerized deployment** for 
 ---
 
 ## Project Structure
-telecom-network-monitor/
-    ├── docker-compose.yml
-    ├── README.md
-    ├── .gitignore
-    ├── .dockerignore
-    │
-    ├── services/
-    │   ├── collector/                  (ping, iperf, alerts)
-    │   │   ├── Dockerfile
-    │   │   ├── requirements.txt
-    │   │   ├── collector.py
-    │   │   ├── utils.py
-    │   │   ├── alerts.py
-    │   │   ├── config.yaml
-    │   │   └── tests/
-    │   │       └── test_utils.py
-    │   │
-    │   └── dashboard/                   (Flask + Chart.js)
-    │       ├── Dockerfile
-    │       ├── requirements.txt
-    │       ├── app.py
-    │       └── templates/
-    │           ├── index.html
-    │           └── style.css
-    │
-    └── .github/
-        └── workflows/
-            └── ci.yml                   (GitHub Actions CI pipeline)
+    telecom-network-monitor/
+        ├── docker-compose.yml
+        ├── README.md
+        ├── .gitignore
+        ├── .dockerignore
+        │
+        ├── services/
+        │   ├── collector/                  (ping, iperf, alerts)
+        │   │   ├── Dockerfile
+        │   │   ├── requirements.txt
+        │   │   ├── collector.py
+        │   │   ├── utils.py
+        │   │   ├── alerts.py
+        │   │   ├── config.yaml
+        │   │   └── tests/
+        │   │       └── test_utils.py
+        │   │
+        │   └── dashboard/                   (Flask + Chart.js)
+        │       ├── Dockerfile
+        │       ├── requirements.txt
+        │       ├── app.py
+        │       └── templates/
+        │           ├── index.html
+        │           └── style.css
+        │
+        └── .github/
+            └── workflows/
+                └── ci.yml                   (GitHub Actions CI pipeline)
 
 
 
@@ -134,11 +134,11 @@ docker compose down -v
 
 ## Tech Stack
 
-Python 3.11 (Flask, SQLAlchemy, PyYAML, requests)
-Docker & Docker Compose
-SQLite (lightweight storage)
-Chart.js (interactive charts)
-GitHub Actions (CI pipeline)
+- Python 3.11 (Flask, SQLAlchemy, requests)
+- Docker & Docker Compose
+- SQLite (lightweight storage)
+- Chart.js (interactive charts)
+- GitHub Actions (CI pipeline)
 
 ## Author
 
