@@ -60,7 +60,7 @@ Includes **alerts**, **CI/CD automation**, and **containerized deployment** for 
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/<your-username>/telecom-network-monitor.git
+git clone https://github.com/adnansamore/telecom-network-monitor.git
 cd telecom-network-monitor
 ```
 
